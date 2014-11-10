@@ -1,0 +1,10 @@
+{
+  "EC2Instance1": {
+    "Type": "AWS::EC2::Instance",
+    "Properties": {
+      "ImageId": {
+        "Fn::FindInMap": ["RegionMap", { "Ref": "AWS::Region" }, "64"]
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "Description": "AWS CloudFormation",
+  "Parameters": {{parameters}},
+  "Mappings": {{mappings}},
+  "Resources": {{resources}}
+}

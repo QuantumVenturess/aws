@@ -5,11 +5,11 @@ require "aws-sdk"
 require "json"
 
 # Functions
-folder = "test"
-folder = "sample"
-folder = "production"
+# @folder = "test"
+# @folder = "sample"
+@folder = "production"
 def string_from_json_file(file_name)
-  name = "#{folder}/#{file_name}.json"
+  name = "#{@folder}/#{file_name}.json"
   if File.exists? name
     file = File.open name
     data = file.read
