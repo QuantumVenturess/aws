@@ -1,0 +1,6 @@
+{
+  "LoadBalancer": {
+    "Condition": "CreateProdResources",
+    "Value": { "Ref": "Ec2Instance2" }
+  }  
+}

@@ -1,0 +1,8 @@
+{
+  "Description": "Cloud formation from cloud_formation.rb",
+  "Parameters": {{parameters}},
+  "Mappings": {{mappings}},
+  "Conditions": {{conditions}},
+  "Resources": {{resources}},
+  "Outputs": {{outputs}}
+}

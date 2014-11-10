@@ -1,0 +1,46 @@
+{
+  "DBPort": {
+    "Default": "3306",
+    "Description": "TCP/IP port for the database",
+    "Type": "Number",
+    "MinValue": "1150",
+    "MaxValue": "65535"
+  },
+  "DBPwd": {
+    "NoEcho": "true",
+    "Default": "postgres",
+    "Description": "The database admin account password",
+    "Type": "String",
+    "MinLength": "1",
+    "MaxLength": "41",
+    "AllowedPattern": "[a-zA-Z0-9]*"
+  },
+  "DBSubnetIpBlocks": {
+    "Description": "Comma-delimited list of three CIDR blocks",
+    "Type": "CommaDelimitedList",
+    "Default": "10.0.48.0/24, 10.0.112.0/24, 10.0.176.0/24"
+  },
+  "EnvType": {
+    "Description": "Environment type",
+    "Default": "prod",
+    "Type": "String",
+    "AllowedValues": ["prod", "test"],
+    "ConstraintDescription": "must specify prod or test"
+  },
+  "InstanceTypeParameter": {
+    "Type":          "String",
+    "Default":       "t2.medium",
+    "AllowedValues": ["t2.medium", "t2.large"],
+    "Description":   "Enter t2.medium or t2.medium. Default is t2.medium"
+  },
+  "myKeyPair": {
+    "Default": "",
+    "Description": "Amazon EC2 Key Pair",
+    "Type": "AWS::EC2::KeyPair::KeyName"
+  },
+  "mySubnetIDs": {
+    "Default": "",
+    "Description": "Subnet IDs",
+    "Type": "List<AWS::EC2::Subnet::Id>"
+  }
+}

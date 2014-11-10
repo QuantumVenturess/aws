@@ -1,0 +1,62 @@
+{
+  "Ec2Instance1": {
+    "Type": "AWS::EC2::Instance",
+    "Properties": {
+      "ImageId": "{{image_id}}",
+      "InstanceType": {
+        "Ref": "InstanceTypeParameter"
+      }
+    }
+  },
+  "Ec2Instance2": {
+    "Type": "AWS::EC2::Instance",
+    "Properties": {
+      "ImageId": {
+        "Fn::FindInMap": ["RegionMap", { "Ref": "AWS::Region" }, "32"]
+      },
+      "InstanceType": {
+        "Ref": "InstanceTypeParameter"
+      }
+    }
+  },
+  "HelloBucket": {
+    "Type": "AWS::S3::Bucket",
+    "Properties": {
+      "AccessControl": "PublicRead"
+    }
+  },
+  "MyELB": {
+    "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "Properties": {
+      "AvailabilityZones": { 
+        "Fn::FindInMap": ["Region2AZ", { "Ref": "AWS::Region" }, "AZ"] 
+      },
+      "Listeners": [
+        {
+          "LoadBalancerPort": "8888",
+          "InstancePort": "8888",
+          "Protocol": "HTTP"
+        }
+      ],
+      "HealthCheck": {
+        "Target": {
+          "Fn::Join": ["", ["HTTP:", "8888", "/"]]
+        },
+        "HealthyThreshold": "5",
+        "UnhealthyThreshold": "2",
+        "Interval": "10",
+        "Timeout": "8"
+      }
+    }
+  },
+  "NewVolume": {
+    "Type": "AWS::EC2::Volume",
+    "Condition": "CreateProdResources",
+    "Properties": {
+      "Size": "100",
+      "AvailabilityZones": {
+        "Fn::GetAtt": ["Ec2Instance1", "AvailabilityZone"]
+      }
+    }
+  }
+}
